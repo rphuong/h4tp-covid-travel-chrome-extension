@@ -1,6 +1,6 @@
- JavaScript source code
-const StateAbbrev =  var states = [
-  ['Arizona', 'AZ'],
+
+const StateAbbrev =
+  [ ['Arizona', 'AZ'],
   ['Alabama', 'AL'],
   ['Alaska', 'AK'],
   ['Arkansas', 'AR'],
@@ -58,24 +58,35 @@ var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansa
 
   function COVIDInfo(phrase) {
     //this.isState = this.checkState(phrase); 
-
+    if (isState(phrase)) {
       this.abbrState = abbrState(phrase, 'abbr');
 
-    var url = "https://covidtracking.com/v1/states/" + this.abbrState + "/current.json"
-    var request = new XMLHttpRequest()
+      var url = "https://covidtracking.com/v1/states/" + this.abbrState + "/current.json"
+      var request = new XMLHttpRequest()
 
-    request.open('GET', url, true)
-    request.onload = function () {
-      // Begin accessing JSON data here
-      var data = JSON.parse(this.response)
-      if (request.status >= 200 && request.status < 400) {
-        this.state = data.state
-        this.positiveIncrease = data.positiveIncrease
-      } else {
-
+      request.open('GET', url, true)
+      request.onload = function () {
+        // Begin accessing JSON data here
+        var data = JSON.parse(this.response)
+        if (request.status >= 200 && request.status < 400) {
+          this.state = data.state
+          this.positiveIncrease = data.positiveIncrease
+          return true;
+        } else {
+          return false;
+        }
       }
+      request.send()
+    } else {
+      return false;
     }
-    request.send()
+      
+  }
+
+function isState(input) {
+  return States.has(input.toLowerCase().split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' '))
 }
 
 function abbrState(input) {
