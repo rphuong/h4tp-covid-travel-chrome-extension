@@ -68,17 +68,17 @@ function COVIDInfo(phrase) {
       var request = new XMLHttpRequest()
 
       request.open('GET', url, true)
-      request.onload = function () {
-        // Begin accessing JSON data here
-        var data = JSON.parse(this.response)
-        if (request.status >= 200 && request.status < 400) {
-          this.information = data;
-          request.send()
-          this.checkFailed = true;
-        } else {
-          this.checkFailed = false;
-        }
-      
+    request.onload = function () {
+      // Begin accessing JSON data here
+      var data = JSON.parse(this.response)
+      if (request.status >= 200 && request.status < 400) {
+        this.information = data;
+        request.send()
+        this.checkFailed = true;
+      } else {
+        this.checkFailed = false;
+      }
+    }
    
     } else {
     this.checkFailed = false;
