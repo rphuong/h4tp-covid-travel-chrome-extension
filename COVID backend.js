@@ -64,9 +64,7 @@ function COVIDInfo(phrase) {
     } else {
       this.abbrState = abbrState(phrase).toLowerCase();
     }
-
-
-      var url = "https://covidtracking.com/v1/states/" + this.abbrState + "/current.json"
+      var url = "https://covidtracking.com/v1/states/ca/current.json"
       var request = new XMLHttpRequest()
 
       request.open('GET', url, true)
