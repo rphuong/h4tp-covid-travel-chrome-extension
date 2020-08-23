@@ -9,7 +9,7 @@
     "content_scripts": [
         {
         "matches": ["*://*.airbnb.com/*"],
-        "js": ["airbnb.js"]
+        "js": ["airbnb.js", "COVID backend.js"]
         }
       ],
     "manifest_version": 2

@@ -16,7 +16,8 @@ const setAlert = () => {
             var button = document.getElementsByClassName("_o5yydw")[0];
             button.onclick = () => {
                     const state = parseForState(input.value).toLowerCase();
-                    alert(state);
+                    var info = new COVIDInfo(state);
+                    alert(info.information.state + " " + info.information.positiveIncrease);
                 }
         }, 10)
     };
