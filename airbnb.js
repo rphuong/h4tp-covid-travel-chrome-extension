@@ -17,9 +17,10 @@ const setAlert = () => {
             button.onclick = () => {
                     const state = parseForState(input.value);
                     var info = new COVIDInfo(state, (info) => {
-                        alert(info.information.state + " " 
-                            + info.information.positiveIncrease + " " 
-                            + info.information.date
+                        alert("Here's some info about COVID in " + info.information.state + ":\n\n" 
+                            + "In the past day, there have been " + info.information.positiveIncrease + " more case(s) and " 
+                            + info.information.deathIncrease + " more death(s).\n\n" 
+                            + "Have a safe trip!"
                         )});
                 }
         }, 10)
