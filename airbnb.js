@@ -15,9 +15,12 @@ const setAlert = () => {
             var input = document.getElementsByClassName('_1xq16jy')[0];
             var button = document.getElementsByClassName("_o5yydw")[0];
             button.onclick = () => {
-                    const state = parseForState(input.value).toLowerCase();
-                    var info = new COVIDInfo(state);
-                    alert(info.information.state + " " + info.information.positiveIncrease);
+                    const state = parseForState(input.value);
+                    var info = new COVIDInfo(state, (info) => {
+                        alert(info.information.state + " " 
+                            + info.information.positiveIncrease + " " 
+                            + info.information.date
+                        )});
                 }
         }, 10)
     };
