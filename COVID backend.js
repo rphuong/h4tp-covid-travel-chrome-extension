@@ -60,7 +60,7 @@ var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansa
     if (isState(phrase)) {
       this.abbrState = abbrState(phrase);
 
-      var url = "https://covidtracking.com/v1/states/" + this.abbrState + "/current.json"
+      var url = "https://covidtracking.com/v1/states/" + this.abbrState.toLowerCase() + "/current.json"
       var request = new XMLHttpRequest()
 
       request.open('GET', url, true)
