@@ -2,17 +2,6 @@
 const CovidData = https://api.covidtracking.com 
 var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']);
 
-const app = document.getElementById('root')
-
-const logo = document.createElement('img')
-logo.src = 'logo.png'
-
-const container = document.createElement('div')
-container.setAttribute('class', 'container')
-
-app.appendChild(logo)
-app.appendChild(container)
-
 
 var request = new XMLHttpRequest()
 
@@ -126,46 +115,3 @@ function abbrState(input, to) {
     }
   }
 }
-
-//const app = document.getElementById('root')
-
-//const logo = document.createElement('img')
-//logo.src = 'logo.png'
-
-//const container = document.createElement('div')
-//container.setAttribute('class', 'container')
-
-//app.appendChild(logo)
-//app.appendChild(container)
-
-//var request = new XMLHttpRequest()
-//request.open('GET', 'https://api.covidtracking.com/v1/states/ca/current.json', true)
-//request.onload = function () {
-//  // Begin accessing JSON data here
-//  var data = JSON.parse(this.response)
-//  if (request.status >= 200 && request.status < 400) {
-
-//      const card = document.createElement('div')
-//      card.setAttribute('class', 'card')
-
-//      const h1 = document.createElement('h1')
-//      //h1.textContent = movie.title
-//      h1.textContent = data.state
-//      const p = document.createElement('p')
-//     // movie.description = movie.description.substring(0, 300)
-//      //p.textContent = `${movie.description}...`
-//     // state.deathConfirmed
-//    p.textContent = data.positiveIncrease
-
-
-//      container.appendChild(card)
-//      card.appendChild(h1)
-//      card.appendChild(p)
-   
-//  } else {
-  
-//    app.appendChild(errorMessage)
-//  }
-//}
-
-//request.send()
