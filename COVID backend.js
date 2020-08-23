@@ -56,7 +56,7 @@ var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansa
 var StateAbbrevs = new Set(['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY']);
 
 
-function COVIDInfo(phrase) {
+async function COVIDInfo(phrase) {
   
   if (isState(phrase)) {
     if (phrase.length == 2) {
@@ -64,28 +64,33 @@ function COVIDInfo(phrase) {
     } else {
       this.abbrState = abbrState(phrase).toLowerCase();
     }
-      var url = "https://covidtracking.com/v1/states/ca/current.json"
-      var request = new XMLHttpRequest()
+    await getData(this.abbrState);
 
-      request.open('GET', url, true)
-    request.onload = function () {
-      // Begin accessing JSON data here
-      var data = JSON.parse(this.response)
-      if (request.status >= 200 && request.status < 400) {
-        this.information = data;
-        request.send()
-        this.checkFailed = true;
-      } else {
-        this.checkFailed = false;
-      }
-    }
+   
    
     } else {
     this.checkFailed = false;
     }
       
+}
+
+async function getData(state) {
+  var url = "https://covidtracking.com/v1/states/ + state + /current.json"
+  var request = new XMLHttpRequest
+  request.open('GET', 'https://covidtracking.com/v1/states/ca/current.json', true)
+  request.onload = function () {
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response)
+    if (request.status >= 200 && request.status < 400) {
+      this.information = data;
+      await(request.send())
+      this.checkFailed = true;
+    } else {
+      this.checkFailed = false;
+    }
   }
 
+}
 function isState(input) {
   if (input.length == 2) {
     return StateAbbrevs.has(input.toUpperCase());
