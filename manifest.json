@@ -2,7 +2,7 @@
     "name": "Trip Buddy",
     "description": "H4TP Covid Travel Info",
     "version": "1.0",
-    "permissions": ["declarativeContent", "activeTab"],
+    "permissions": ["declarativeContent", "activeTab", "webNavigation"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
