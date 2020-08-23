@@ -74,8 +74,7 @@ function COVIDInfo(phrase) {
         // Begin accessing JSON data here
         var data = JSON.parse(this.response)
         if (request.status >= 200 && request.status < 400) {
-          this.state = data.state
-          this.positiveIncrease = data.positiveIncrease
+          this.information = data;
           return true;
         } else {
           return false;
@@ -88,7 +87,7 @@ function COVIDInfo(phrase) {
       
   }
 
-function isState(input) {
+private function isState(input) {
   if (input.length == 2) {
     return StateAbbrevs.has(input.toUpperCase());
   } else {
@@ -99,7 +98,7 @@ function isState(input) {
 
 }
 
-function abbrState(input) {
+private function abbrState(input) {
     input = input.toLowerCase();
     for (i = 0; i < StateAbbrev.length; i++) {
       if (StateAbbrev[i][1] == input) {
