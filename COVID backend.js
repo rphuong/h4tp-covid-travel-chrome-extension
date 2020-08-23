@@ -57,9 +57,8 @@ var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansa
 
 
   function COVIDInfo(phrase) {
-    //this.isState = this.checkState(phrase); 
     if (isState(phrase)) {
-      this.abbrState = abbrState(phrase, 'abbr');
+      this.abbrState = abbrState(phrase);
 
       var url = "https://covidtracking.com/v1/states/" + this.abbrState + "/current.json"
       var request = new XMLHttpRequest()
