@@ -4,7 +4,7 @@
     "permissions": ["declarativeContent", "activeTab", "webNavigation"],
     "background": {
         "scripts": ["background.js"],
-        "persistent": true
+        "persistent": false
     },
     "content_scripts": [
         {

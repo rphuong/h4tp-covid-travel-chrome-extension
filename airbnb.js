@@ -1,20 +1,31 @@
+'use strict';
+
+/*
+ * Sets up an alert to display covid data
+ */
 const setAlert = () => {
+    // Find search bar
     var searchbar = document.getElementsByClassName('_1cot5uz')[0];
     if (!searchbar) {
         searchbar = document.getElementsByClassName('_1xq16jy')[0];
     }
-    searchbar.addEventListener('click', function() {
-        setTimeout(function() {
+    // Once the search bar is clicked, set up the alert
+    searchbar.onclick = () => {
+        setTimeout(() => {
             var input = document.getElementsByClassName('_1xq16jy')[0];
             var button = document.getElementsByClassName("_o5yydw")[0];
-            button.onclick = function() {
-                    const state = parseForState(input.value);
+            button.onclick = () => {
+                    const state = parseForState(input.value).toLowerCase();
                     alert(state);
                 }
         }, 10)
-    });
+    };
 };
 
+/*
+ * Parses the given location string in some format "A, ..., Y, Z," and
+ * returns what would the state name
+ */
 const parseForState = (location) => {
     var locs = location.trim().split(', ');
     var lastIdx = locs.length - 1;
@@ -25,4 +36,5 @@ const parseForState = (location) => {
 }
 
 setAlert();
-chrome.runtime.onMessage.addListener(setAlert);
+chrome.runtime.onMessage.addListener(
+    (request, sender, sendResponse) => {if (request.message === "URL Change") {setAlert();}});
