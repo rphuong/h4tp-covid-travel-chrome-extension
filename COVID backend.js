@@ -73,19 +73,20 @@ function COVIDInfo(phrase) {
         var data = JSON.parse(this.response)
         if (request.status >= 200 && request.status < 400) {
           this.information = data;
-          return true;
+          request.send()
+          this.checkFailed = true;
         } else {
-          return false;
+          this.checkFailed = false;
         }
-      }
-      request.send()
+      
+   
     } else {
-      return false;
+    this.checkFailed = false;
     }
       
   }
 
-private function isState(input) {
+function isState(input) {
   if (input.length == 2) {
     return StateAbbrevs.has(input.toUpperCase());
   } else {
@@ -96,7 +97,7 @@ private function isState(input) {
 
 }
 
-private function abbrState(input) {
+function abbrState(input) {
     input = input.toLowerCase();
     for (i = 0; i < StateAbbrev.length; i++) {
       if (StateAbbrev[i][1] == input) {
