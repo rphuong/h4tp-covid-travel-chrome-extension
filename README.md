@@ -5,6 +5,7 @@ like to travel.
 
 ### Current support:
 Websites: airbnb.com
+
 Locations: USA States
 
 ## Usage
