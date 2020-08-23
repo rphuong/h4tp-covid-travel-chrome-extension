@@ -1,4 +1,5 @@
-# H4TP Covid Travel Chrome Extension
+# Trip Buddy
+## H4TP Covid Travel Chrome Extension
 This is a helpful chrome extension to alert users of 
 covid cases and deaths in the location they would 
 like to travel.
