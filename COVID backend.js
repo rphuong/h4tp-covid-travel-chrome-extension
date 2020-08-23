@@ -56,7 +56,6 @@ var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansa
 
 
 
-
   function COVIDInfo(phrase) {
     //this.isState = this.checkState(phrase); 
 
@@ -74,37 +73,16 @@ var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansa
         this.positiveIncrease = data.positiveIncrease
       } else {
 
-        // app.appendChild(errorMessage)
       }
     }
     request.send()
 }
 
-COVIDInfo.checkState = function(phrase){
-  var words = phrase.split(" ");
-  for (var i = 0; i < words.length; i++) {
-    if (States.has(words[i])) {
-      this.State = words[i];
-      return true;
-    }
-  }
-  return false;
-}
-
-function abbrState(input, to) {
-  if (to == 'abbr') {
-    input = input.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-    for (i = 0; i < StateAbbrev.length; i++) {
-      if (StateAbbrev[i][0] == input) {
-        return (StateAbbrev[i][1]);
-      }
-    }
-  } else if (to == 'name') {
+function abbrState(input) {
     input = input.toLowerCase();
     for (i = 0; i < StateAbbrev.length; i++) {
       if (StateAbbrev[i][1] == input) {
         return (StateAbbrev[i][0]);
       }
     }
-  }
 }
