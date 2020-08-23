@@ -53,14 +53,20 @@ const StateAbbrev =
 ];
 
 var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']);
+var StateAbbrevs = new Set(['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY']);
 
 
+function COVIDInfo(phrase) {
+  
+  if (isState(phrase)) {
+    if (phrase.length == 2) {
+      this.abbrState = phrase.toLowerCase();
+    } else {
+      this.abbrState = abbrState(phrase).toLowerCase();
+    }
 
-  function COVIDInfo(phrase) {
-    if (isState(phrase)) {
-      this.abbrState = abbrState(phrase);
 
-      var url = "https://covidtracking.com/v1/states/" + this.abbrState.toLowerCase() + "/current.json"
+      var url = "https://covidtracking.com/v1/states/" + this.abbrState + "/current.json"
       var request = new XMLHttpRequest()
 
       request.open('GET', url, true)
@@ -83,9 +89,14 @@ var States = new Set(['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansa
   }
 
 function isState(input) {
-  return States.has(input.toLowerCase().split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' '))
+  if (input.length == 2) {
+    return StateAbbrevs.has(input.toUpperCase());
+  } else {
+    return States.has(input.toLowerCase().split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' '))
+  }
+
 }
 
 function abbrState(input) {
